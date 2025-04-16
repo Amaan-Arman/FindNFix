@@ -1,0 +1,294 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/css/selectize.bootstrap5.min.css" integrity="sha512-Ars0BmSwpsUJnWMw+KoUKGKunT7+T8NGK0ORRKj+HT8naZzLSIQoOSIIM3oyaJljgLxFi0xImI5oZkAWEFARSA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    .form-group {
+        width: 85%;
+        padding-right: 8px;
+        text-align: left;
+        display: flex;
+    }
+    .selectize-input.focus {
+        border-color: none !important;
+        outline: 0;
+        box-shadow: none !important;
+    }
+    .selectize-input {
+        border: none !important;
+    }
+</style>
+
+    <main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 >Create great designs, faster</h1>
+        <p>
+            High-quality photos, videos, vectors, PSD, AI images, icons... to go from ideas to outstanding designs
+        </p>
+        <!-- Search Bar -->
+        <div class="search-container ">
+           @*<div>
+                <input type="text" list="datalistOption" id="Search_ID" placeholder="Search Here.."/>
+                <datalist id="datalistOption" >
+                    <option  ng-repeat="c in getserviceList" value="{{c.serviceName}}" />
+                </datalist>
+            </div>*@
+            <div class="form-group">
+                <select class="form-control" id="Search_ID" ng-model="selectedService">
+                    <option value="">Select your country</option>
+                    <option ng-repeat="c in getserviceList" value="{{c.serviceName}}">
+                        {{c.serviceName}}
+                    </option>
+                </select>
+            </div>
+            <button ng-click="getLocation()" >
+                <i class="fa fa-search"></i>
+                <span>Search</span>
+            </button>
+        </div>
+        <!-- Tag Buttons -->
+        @* <div class="tag-buttons" >
+            <button>social media</button>
+            <button>business card mockup</button>
+            <button>arrow</button>
+        </div> *@
+    </section>
+
+    @*<div class="container">
+        <button ng-click="getLocation()">Get My Location</button>
+        <button ng-click="startTracking()">Start Tracking</button>
+        <div id="map" style="height: 100vh; width: 100%;"></div>
+    </div> *@
+
+    <div class="container-fluid bg-light py-lg-4 py-3">
+        <div class="d-flex justify-content-center  align-items-center">
+            <h2 class="section-title-one ">Sign up for 10 daily free downloads and access to AI tools</h2>
+            <button type="button" class="btn mx-3 ">Primary</button>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <h2 class="section-title ">Free tools to skyrocket your creative freedom</h2>
+        <div class="row g-2 ">
+            <!-- Tool 1 -->
+            <div class="col-6 col-lg-3 col-md-4 col-sm-6 " ng-repeat="c in GetServicePost">
+                <div class="card tool-card" style="width: 16rem;">
+                    <img src="~/admin_assets/images/{{c.featuredImg}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{c.title}}</h5>
+                        <p class="card-text">{{c.description}}</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{c.customPrice}} PKR  </li>
+                        </ul>
+                        <button type="button" ng-click="UserDetail(c.id)" class="btn-request"> Book Now</button>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+ 
+    <!-- modal -->
+<div class="modal modal-lg fade" id="exampleModalToggle" aria-hidden="true"
+                aria-labelledby="exampleModalToggleLabel" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+            <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
+            <div class="modal-content" style="overflow-y: scroll; ">
+                <div class="modal-header">
+                    @* data-bs-target="#exampleModalToggle" data-bs-toggle="modal" *@
+                    <button class="btn bg-transparent text-dark" ng-click="cancelRequest()" >
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Find Service</h1>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+
+                    <div aria-live="polite" aria-atomic="true" class="position-relative">
+                        <div class="toast-container top-0 start-50 translate-middle-x p-3">
+                            <!-- ng-repeat dynamically creates new toasts -->
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div id="map" style="height: 50vh; width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="modal-footer d-block p-2">
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item ">
+                            <h2 class="accordion-header mb-2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                    Service Providers
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFlushExample">
+                                <div  class="accordion-body p-0" style="line-height: normal;">
+                                    <div ng-repeat="c in SearchServiceList" class=" my-2 bg-light p-3 ">
+                                        <div class="row">
+                                            <div class="col-2">
+                                                <img src="~/images/hero.jpg " style="border-radius:50%;height:70px;width:75px;" class="flex-shrink-0 img" alt="...">
+                                            </div>
+                                            <div class="col">
+                                                <div>
+                                                    <h5 class="mx-2">{{c.name}}</h5>
+                                                    <div class="px-2 "><p class="m-0 "> {{c.serviceName}}</p></div>
+                                                    <div class="px-2"><p class="m-0 ">Estimated Distance: {{c.distance}} KM</p> 
+                                                        <p class="m-0 ">Estimated Time: {{c.time}}  min </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @* <div class="col-3">
+                                                <div class="p-2"><span>Rs: {{c.customPrice}}</span> </div>
+                                            </div> *@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+             
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal modal-lg fade" id="AcceptModel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false"
+            aria-labelledby="AcceptModelLabel" tabindex="-1">
+    <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header ">
+                @* <button class="btn bg-transparent text-dark" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-arrow-left"></i>
+                </button> *@
+                <h1 class="mx-3 modal-title fs-5" id="AcceptModelLabel">Detail</h1>
+            </div>
+            <div class="modal-body">
+                <div id="mapd" style="height: 50vh; width: 100%;"></div>
+            </div>
+            <div class="modal-footer mx-auto">
+                @* <button type="button" class="btn-request w-100"> Send </button> *@
+                <!-- show after send msg -->
+                <!-- <button type="button" class="btn-request w-100">Quote </button>
+                    <button type="button" class="btn-accept w-100">Accept $10</button> -->
+                <!-- show after accept-->
+                    @*<button type="button" class="btn-accept w-100" >Complete</button> *@
+                <button type="button" class="btn-cancle w-100">Cancle </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-lg fade" id="exampleModalToggle2" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false"
+        aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down">
+        <div class="modal-content" ng-repeat="c in GetPostDetailList">
+            <div class="modal-header ">
+                <button class="btn bg-transparent text-dark" data-bs-target="#exampleModalToggle2"
+                        data-bs-toggle="modal">
+                    <i class="fa fa-arrow-left"></i>
+                </button>
+                <h1 class="mx-3 modal-title fs-5" id="exampleModalToggleLabel2">Worker Detail</h1>
+            </div>
+            <div class="modal-body" >
+                <div class="text-center">
+                        <img src="~/admin_assets/images/{{c.userImg}}" style="border-radius: 50%; height: 80px;" class="img" alt="...">
+                    <h6 class="fw-semibold mt-3 my-0">{{c.name}}</h6>
+                        <p class="mt-0">{{c.tagline}}  </p>
+                </div>
+                <div>
+                    <p>{{c.aboutme}} </p>
+                    <h6 class="fw-semibold mt-3 my-0">Services Offered</h6>
+                    <p class="mt-0">{{c.title}}  </p>
+                    <h6 class="fw-semibold mt-3 my-0">Decription</h6>
+                    <p class="mt-0">{{c.description}}  </p>
+                    <h4 class="fw-semibold mt-3 my-0">PKR: {{c.customPrice}}</h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" ng-click="OpenBookingModal(c.id,c.userID,c.title)" class="btn-request">Request</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="BookingModal" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Booking Detail</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Address:</label>
+                            <input type="text" class="form-control" id="AddressID">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">Date of Booking:</label>
+                            <input class="form-control" id="Date_of_Booking" type="date">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-request" ng-click="RequestBooking()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="footer-legal text-center mt-4">
+        <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center ">
+            <div class="d-flex flex-column align-items-center ">
+                <div class="copyright text-light ">
+                    &copy; Copyright <strong><span>Book Me</span></strong>. All Rights Reserved
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<style>
+    .leaflet-control-attribution.leaflet-control {
+        display: none;
+    }
+    .offer {
+        background-color: #5502c3;
+        color:white;
+        border: none;
+        width: 100%;
+        border-radius: 5px;
+        padding: 2px 10px 2px 10px;
+    }
+
+    .mood-btn {
+        font-size: 20px;
+        margin: 5px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+    .footer-legal {
+        padding: 30px 0;
+        background: #3a4753;
+    }
+
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js" integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+@* <script src="~/js/jquery.signalr-2.4.2.min.js"></script> *@
+<!-- Include the SignalR client library -->
+@* <script src="~/js/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script src="~/ControllerScript/HomeController.js"></script>
+<script src="~/js/signalrservice.js"></script>
+<script src="~/js/sessionservice.js"></script> *@

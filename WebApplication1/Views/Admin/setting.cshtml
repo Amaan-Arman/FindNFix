@@ -1,0 +1,252 @@
+@{
+    ViewData["Title"] = "Setting";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page" ng-controller="SettingController">
+    <partial name="_Header" />
+    <div class="section-body">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="d-lg-flex justify-content-between">
+                        <ul class="nav nav-tabs page-header-tab">
+                            <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#MyProfile">My Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Change_Password">Change Password </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <div class="tab-content">
+                        <div class="tab-pane active show" id="MyProfile">
+                            <div class="row clearfix">
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="card" ng-repeat="c in Getprofile">
+                                        <img class="card-img-top" src="~/admin_assets/images/{{c.user_img}}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{c.user_name}} </h5>
+                                            <p class="card-text">{{c.tagline}} </p>
+                                            <p class="card-text">{{c.aboutme}} </p>
+                                            <div class="row">
+                                                <div class="col-4">
+                                                    <h6><strong></strong></h6>
+                                                    <span>Completed Services</span>
+                                                </div>
+                                                <div class="col-4">
+                                                    <h6><strong></strong></h6>
+                                                    <span>Canceled Services</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">{{c.email}}</li>
+                                            <li class="list-group-item">{{c.user_mobileNo}}</li>
+                                            <li class="list-group-item">{{c.address}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-12">
+                                    <div class="row">
+                                        <div class="col-xl-4 col-lg-4 col-sm-6">
+                                            <div class="card">
+                                                <div class="card-body widgets1">
+                                                    <div class="icon">
+                                                        <i class="icon-trophy text-success font-30"></i>
+                                                    </div>
+                                                    <div class="details">
+                                                        <h6 class="mb-0 font600">Total Earned</h6>
+                                                        <span class="mb-0">$96K +</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-sm-6">
+                                            <div class="card">
+                                                <div class="card-body widgets1">
+                                                    <div class="icon">
+                                                        <i class="icon-heart text-warning font-30"></i>
+                                                    </div>
+                                                    <div class="details">
+                                                        <h6 class="mb-0 font600">Total Likes</h6>
+                                                        <span class="mb-0">6,270</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-sm-12">
+                                            <div class="card">
+                                                <div class="card-body widgets1">
+                                                    <div class="icon">
+                                                        <i class="icon-handbag text-danger font-30"></i>
+                                                    </div>
+                                                    <div class="details">
+                                                        <h6 class="mb-0 font600">Delivered</h6>
+                                                        <span class="mb-0">720 Delivered</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+                                        <!--<li class="nav-item">
+                                            <a class="nav-link active" id="pills-blog-tab" data-toggle="pill" href="#pills-blog" role="tab" aria-controls="pills-blog" aria-selected="true">Blog</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="pills-timeline-tab" data-toggle="pill" href="#pills-timeline" role="tab" aria-controls="pills-timeline" aria-selected="true">Timeline</a>
+                                        </li>-->
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                            <div class="card" ng-repeat="c in Getprofile">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Edit Profile</h3>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row clearfix">
+                                                        <div class="col-sm-6 col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Full Name</label>
+                                                                <input type="text" class="form-control" placeholder="Company" value="{{c.user_name}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Email address</label>
+                                                                <input type="email" class="form-control" value="{{c.email}}" placeholder="Email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Address</label>
+                                                                <input type="text" class="form-control" placeholder="Home Address" value="{{c.address}}">
+                                                            </div>
+                                                        </div>
+                                                          <div class="col-sm-6 col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Phone No</label>
+                                                                <input type="text" class="form-control" placeholder="Phone number" value="{{c.user_mobileNo}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="form-label">City</label>
+                                                                <input type="text" class="form-control" placeholder="City" value="{{c.city}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Country</label>
+                                                                <select class="form-control custom-select">
+                                                                    <option selected value="{{c.country}}">{{c.country}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                          <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label class="form-label">Tag line</label>
+                                                                <input type="text" class="form-control" placeholder="Tag line" value="{{c.tagline}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group mb-0">
+                                                                <label class="form-label">About Me</label>
+                                                                <textarea rows="5" class="form-control" placeholder="Here can be your description">{{c.aboutme}}</textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer text-right">
+                                                    <button type="submit" class="btn btn-primary" ng-click="UpdateProfile(c.user_credential_id)">Update Profile</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="tab-pane" id="Change_Password">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Change Password</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row clearfix">
+                                        <div class="col-lg-12 col-md-12">
+                                            <hr>
+                                            <h6>Change Password</h6>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Current Password">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="New Password">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="Confirm New Password">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 m-t-20 text-right">
+                                            <button type="button" class="btn btn-primary">SAVE</button> &nbsp;
+                                            <button type="button" class="btn btn-default">CANCEL</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body">
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="~/js/angular.min.js"></script>
+<script src="~/ControllerScript/SettingController.js"></script>
+<script src="admin_assets/bundles/lib.vendor.bundle.js"></script>
+
+<script src="admin_assets/plugins/dropify/js/dropify.min.js"></script>
+
+<script src="admin_assets/js/core.js"></script>
+<script>
+    $(function () {
+        "use strict";
+
+        $('.dropify').dropify();
+
+        var drEvent = $('#dropify-event').dropify();
+        drEvent.on('dropify.beforeClear', function (event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+
+        drEvent.on('dropify.afterClear', function (event, element) {
+            alert('File deleted');
+        });
+
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-déposez un fichier ici ou cliquez',
+                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                remove: 'Supprimer',
+                error: 'Désolé, le fichier trop volumineux'
+            }
+        });
+    });
+</script>

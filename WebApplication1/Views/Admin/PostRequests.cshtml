@@ -1,0 +1,201 @@
+@* @model WebApplication1.Models.Home *@
+@{
+    ViewData["Title"] = "Post Requests";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page" ng-controller="ServicesController">
+    <partial name="_Header" />
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-md-flex justify-content-between mb-2">
+                                <ul class="nav nav-tabs b-none">
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#PendingRequest"><i class="fa fa-list-ul"></i>Pending List</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#AcceptRequests"><i class="fa fa-list-ul"></i>Accept List</a></li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addnew"><i class="fa fa-plus"></i> Post Services</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="PendingRequest" role="tabpanel">
+                    <div class="row clearfix">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name </th>
+                                                    <th>Service</th>
+                                                    <th>Address</th>
+                                                    <th>Date of Booking </th>
+                                                    <th>Request date</th>
+                                                    <th>Status </th>
+                                                    <th>Acton </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="c in GetPostRequests">
+                                                    <td><img src="~/admin_assets/images/{{c.userImg}}" alt="Avatar" class="w30 rounded-circle mr-2"> <span>{{c.name}}</span></td>
+                                                    <td>{{c.serviceName}}</td>
+                                                    <td>{{c.address}}</td>
+                                                    <td>{{c.dateofbooking}}</td>
+                                                    <td>{{c.date}} </td>
+                                                    <td>{{c.Status}} </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary" ng-click="Updatebooking(c.bookingID,c.userid,'Accept' )">Accept</button>
+                                                        <button type="button" class="btn btn-danger" ng-click="Updatebooking(c.bookingID,c.userid,'Reject')">Reject</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade " id="AcceptRequests" role="tabpanel">
+                    <div class="row clearfix">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name </th>
+                                                    <th>Service</th>
+                                                    <th>Address</th>
+                                                    <th>Date of Booking </th>
+                                                    <th>Request date</th>
+                                                    <th>Status </th>
+                                                    <th>Acton </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="c in GetAcceptPost" >
+                                                    <td><img src="~/admin_assets/images/{{c.userImg}}" alt="Avatar" class="w30 rounded-circle mr-2"> <span>{{c.name}}</span></td>
+                                                    <td>{{c.serviceName}}</td>
+                                                    <td>{{c.address}}</td>
+                                                    <td>{{c.dateofbooking}}</td>
+                                                    <td>{{c.date}} </td>
+                                                    <td>{{c.status}} </td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-primary" ng-click="Updatebooking(c.bookingID,c.userid, 'Completed')">Complete</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="addnew" role="tabpanel">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Add Service Post</h3>
+                                </div>
+                                <form class="card-body">
+                                    <div class="row clearfix">
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Title </label>
+                                                <input type="text" id="title_id" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Description </label>
+                                                <input type="text" id="description_id" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Price</label>
+                                                <input type="number" id="price_id" class="form-control" placeholder="00">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Featured image</label>
+                                                <input type="file" id="featured_id" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <button type="button" ng-click="PostService()" class="btn btn-primary mt-4">Post</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="5">Services List</th>
+                                            </tr>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Featured image</th>
+                                                <th>Title</th>
+                                                <th>Description</th>
+                                                <th>Price</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="c in GetServicePostadmin">
+                                                <td>{{index+1}}</td>
+                                                <td><img src="~/admin_assets/images/{{c.featuredImg}}" alt="featuredImg" class="w30 rounded-circle mr-2"></td>
+                                                <td>{{c.title}}</td>
+                                                <td><span>{{c.description}}</span></td>
+                                                <td><span>{{c.customPrice}}</span></td>
+                                                <td><span>{{c.date}} </span></td>
+                                                <td><span ng-click="showDeleteMessage(c.id)"><i class="fa fa-trash" aria-hidden="true"></i></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body">
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="~/js/angular.min.js"></script>
+<script src="~/ControllerScript/ServicesController.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script src="~/js/signalrservice.js"></script>
+<script src="~/js/sessionservice.js"></script>

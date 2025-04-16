@@ -1,0 +1,101 @@
+@model WebApplication1.Models.Home
+@{
+    ViewData["Title"] = "Services";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page" ng-controller="ServicesController">
+    <partial name="_Header" />
+    <div class="section-body mt-3">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-md-flex justify-content-between mb-2">
+                                <ul class="nav nav-tabs b-none">
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#list"><i class="fa fa-list-ul"></i> Services List</a></li>
+                                    @* <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#addnew"><i class="fa fa-plus"></i> Post Services</a></li> *@
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body">
+        <div class="container-fluid">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="list" role="tabpanel">
+                    <div class="row clearfix">
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="5">Services List</th>
+                                            </tr>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Service Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="c in GetserviceList">
+                                                <td>{{index+1}}</td>
+                                                <td>{{c.serviceName}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Add Service</h3>
+                                </div>
+                                <form class="card-body">
+                                    <div class="row clearfix">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Select Service Name</label>
+                                                @Html.DropDownListFor(model => model.ServiceID, ViewBag.serviceListVB as SelectList, "Service Name", new { @class = "form-control fieldwidth", id = "ServiceID_id", @tabindex = 1 })
+                                                @* <input type="text" class="form-control"> *@
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <button type="submit" ng-click="SaveService()" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body">
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+
+<script src="~/js/angular.min.js"></script>
+<script src="~/ControllerScript/ServicesController.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script src="~/js/signalrservice.js"></script>
+<script src="~/js/sessionservice.js"></script>

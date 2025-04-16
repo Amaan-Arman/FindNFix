@@ -1,0 +1,240 @@
+@model WebApplication1.Models.login
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+    <title>FindNFix | Register</title>
+
+<!-- Bootstrap Core and vandor -->
+<link rel="stylesheet" href="~/admin_assets/plugins/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/admin_assets/fontawesome-free/css/all.css">
+<link rel="stylesheet" href="~/admin_assets/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/admin_assets/plugins/dropify/css/dropify.min.css">
+    <!-- Core css -->
+<link rel="stylesheet" href="~/admin_assets/css/main.css"/>
+<link rel="stylesheet" href="~/admin_assets/css/theme1.css"/>
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+</head>
+<body class="font-montserrat" ng-app="Homeapp">
+
+    <div class="auth" ng-controller="LoginController">
+    <div class="auth_left" style="width:100%;">
+        <div class="card">
+            <div class="text-center mb-2">
+                <a class="header-brand" href="#"><i class="fa fa-soccer-ball-o brand-logo"></i></a>
+            </div>
+                <div class="card-body" ng-show="!StepOne">
+                <div class="card-title">Create new account</div>
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                        @Html.TextBoxFor(model => model.user_name, new { @class = "form-control", @type = "text", @placeholder = "Enter name", id = "Re_user_name_id", @autocomplete = "off" })
+                    <span id="Name_id_errormessage" class="small"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone No</label>
+                        @Html.TextBoxFor(model => model.user_mobileNo, new { @class = "form-control", @type = "number", @placeholder = "Enter Email", id = "Re_phone_id", @autocomplete = "off" })
+                        <span id="Phone_id_errormessage" class="small"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email address</label>
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @type = "email", @placeholder = "Enter Email", id = "Re_Email_id", @autocomplete = "off" })
+                    <span id="Email_id_errormessage" class="small"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">City</label>
+                        <select class="custom-select" id="CitySelect">
+                            <option selected>Choose...</option>
+                            <option value="1">Karachi</option>
+                            <option value="2">Lahore</option>
+                            <option value="3">Islamabad</option>
+                        </select>
+                    <span id="City_id_errormessage" class="small"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control", @type = "password", @placeholder = "Enter Password", id = "rePassword_id", @autocomplete = "off" })
+                    <span id="Re_Password_id_errormessage" class="small "></span>
+                 </div>
+                <div class="form-footer">
+                        <a id="CheckEmailFunction" class="btn btn-primary btn-block text-light" ng-click="CheckEmailFunction()">Next</a>
+                </div>
+            </div>
+            <div class="card-body" ng-show="!StepTwo">
+              
+                <div class="row">
+                    <div class="col-12 col-lg-4 col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-label">User Picture</label>
+                            <input type="file" id="User_img" class="dropify">
+                            <small id="User_img-text-danger"></small>
+                        </div>
+                    </div>
+                        <div class="col-6 col-lg-4 col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-label">Front CNIC</label>
+                            <input type="file" id="Front_CNIC" class="dropify">
+                            <small id="Front-text-danger"></small>
+                        </div>
+                    </div>
+                        <div class="col-6 col-lg-4 col-md-4 col-sm-4">
+                        <div class="form-group">
+                            <label class="form-label">Back CNIC</label>
+                            <input type="file" id="Back_CNIC" class="dropify">
+                            <small id="Back-text-danger"></small>
+                        </div>
+                    </div>
+                </div>
+                  
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" />
+                        <span class="custom-control-label">Agree the <a href="#">terms and policy</a></span>
+                    </label>
+                </div>
+                <div class="form-footer">
+                        <button type="submit" class="btn btn-primary btn-block" ng-click="WorkerRegistrationFunction()">Submit</button>
+                </div>
+            </div>
+            <div class="card-body" ng-show="!Stepthree">
+                <h2>Welcome..!</h2>
+                <p>
+                    Your Account will be activated within 48 hours after verification.
+                </p>
+                <a href="/login/index">Login here</a>
+            </div>
+           @*<div class="text-center text-muted">
+                Already have account? <a href="/login/">Sign in</a>
+            </div> *@
+        </div>
+    </div>
+    <div class="auth_right full_img"></div>
+</div>
+
+    <script src="~/admin_assets/bundles/lib.vendor.bundle.js"></script>
+    <script src="~/admin_assets/plugins/dropify/js/dropify.min.js"></script>
+    <script src="~/js/angular.min.js"></script>
+    <script src="~/ControllerScript/LoginController.js"></script>
+    <script src="~/~/admin_assets/js/core.js"></script>
+    <script>
+        debugger
+        $(function () {
+            $("#Re_user_name_id").keyup(function () {
+                var Re_user_name_id = $("#Re_user_name_id").val();
+                if (Re_user_name_id.trim().length > 0) {
+                    $("#Name_id_errormessage").html("");
+                    $("#Re_user_name_id").css({ "border-color": "", "border-weight": "", "border-style": "" });
+                }
+
+            })
+        });
+        $(function () {
+            $("#Re_phone_id").keyup(function () {
+                var Re_phone_id = $("#Re_phone_id").val();
+                if (Re_phone_id.trim().length > 0) {
+                    $("#Phone_id_errormessage").html("");
+                    $("#Re_phone_id").css({ "border-color": "", "border-weight": "", "border-style": "" });
+                }
+
+            })
+        });
+        $(function () {
+            $("#Re_Email_id").keyup(function () {
+                var Re_Email_id = $("#Re_Email_id").val();
+                if (Re_Email_id.trim().length > 0) {
+                    $("#Email_id_errormessage").html("");
+                    $("#Re_Email_id").css({ "border-color": "", "border-weight": "", "border-style": "" });
+                }
+
+            })
+        });
+        $(function () {
+            $("#CitySelect").keyup(function () {
+                var CitySelect = $("#PasswoCitySelectrd_id").val();
+                if (CitySelect.trim().length > 0) {
+                    $("#City_id_errormessage").html("");
+                    $("#CitySelect").css({ "border-color": "", "border-weight": "", "border-style": "" });
+                }
+
+            })
+        });
+        $(function () {
+            $("#User_img").keyup(function () {
+                var User_img = $("#User_img").val();
+                if (User_img.trim().length > 0) {
+                    $("#User_img-text-danger").html("");
+                    $("#User_img").css({ "border-color": "", "border-weight": "", "border-style": "" });
+                }
+
+            })
+        });
+        $(function () {
+            $("#Front_CNIC").keyup(function () {
+                var Front_CNIC = $("#Front_CNIC").val();
+                if (Front_CNIC.trim().length > 0) {
+                    $("#Front-text-danger").html("");
+                    $("#Front_CNIC").css({ "border-color": "", "border-weight": "", "border-style": "" });
+                }
+
+            })
+        });
+        $(function () {
+            $("#Back_CNIC").keyup(function () {
+                var Back_CNIC = $("#Back_CNIC").val();
+                if (Back_CNIC.trim().length > 0) {
+                    $("#Back-text-danger").html("");
+                    $("#Back_CNIC").css({ "border-color": "", "border-weight": "", "border-style": "" });
+                }
+
+            })
+        });
+        $(function () {
+            $("#rePassword_id").keyup(function () {
+                var rePassword_id = $("#rePassword_id").val();
+                if (rePassword_id.trim().length > 0) {
+                    $("#Re_Password_id_errormessage").html("");
+                    $("#rePassword_id").css({ "border-color": "", "border-weight": "", "border-style": "" });
+                }
+
+            })
+        });
+    </script>
+    <script>
+        $(function () {
+            "use strict";
+
+            $('.dropify').dropify();
+
+            var drEvent = $('#dropify-event').dropify();
+            drEvent.on('dropify.beforeClear', function (event, element) {
+                return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+            });
+
+            drEvent.on('dropify.afterClear', function (event, element) {
+                alert('File deleted');
+            });
+
+            $('.dropify-fr').dropify({
+                messages: {
+                    default: 'Glissez-déposez un fichier ici ou cliquez',
+                    replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                    remove: 'Supprimer',
+                    error: 'Désolé, le fichier trop volumineux'
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

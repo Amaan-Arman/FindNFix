@@ -1,0 +1,214 @@
+@{
+    ViewData["Title"] = "Profile";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page">
+    <partial name="_Header" />
+    <div class="section-body mt-4">
+        <div class="container-fluid">
+            <div class="row clearfix">
+                <div class="col-lg-4 col-md-12">
+                    
+                    <div class="card">
+                        <img class="card-img-top" src="admin_assets/images/gallery/6.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">Peter Richards</h5>
+                            <p class="card-text">795 Folsom Ave, Suite 600 San Francisco, 94107</p>
+                            <div class="row">
+                                <div class="col-4">
+                                    <h6><strong>3265</strong></h6>
+                                    <span>Post</span>
+                                </div>
+                                <div class="col-4">
+                                    <h6><strong>1358</strong></h6>
+                                    <span>Followers</span>
+                                </div>
+                                <div class="col-4">
+                                    <h6><strong>10K</strong></h6>
+                                    <span>Likes</span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">peter@gmail.com</li>
+                            <li class="list-group-item">+ 202-555-2828</li>
+                            <li class="list-group-item">October 22th, 1990</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="javascript:void(0);" class="card-link">View More</a>
+                            <a href="javascript:void(0);" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-sm-6">
+                            <div class="card">
+                                <div class="card-body widgets1">
+                                    <div class="icon">
+                                        <i class="icon-trophy text-success font-30"></i>
+                                    </div>
+                                    <div class="details">
+                                        <h6 class="mb-0 font600">Total Earned</h6>
+                                        <span class="mb-0">$96K +</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-sm-6">
+                            <div class="card">
+                                <div class="card-body widgets1">
+                                    <div class="icon">
+                                        <i class="icon-heart text-warning font-30"></i>
+                                    </div>
+                                    <div class="details">
+                                        <h6 class="mb-0 font600">Total Likes</h6>
+                                        <span class="mb-0">6,270</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-sm-12">
+                            <div class="card">
+                                <div class="card-body widgets1">
+                                    <div class="icon">
+                                        <i class="icon-handbag text-danger font-30"></i>
+                                    </div>
+                                    <div class="details">
+                                        <h6 class="mb-0 font600">Delivered</h6>
+                                        <span class="mb-0">720 Delivered</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+                        <!--<li class="nav-item">
+                            <a class="nav-link active" id="pills-blog-tab" data-toggle="pill" href="#pills-blog" role="tab" aria-controls="pills-blog" aria-selected="true">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pills-timeline-tab" data-toggle="pill" href="#pills-timeline" role="tab" aria-controls="pills-timeline" aria-selected="true">Timeline</a>
+                        </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Profile</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Edit Profile</h3>
+                                    <div class="card-options">
+                                        <a href="#" class="card-options-fullscreen" data-toggle="card-fullscreen"><i class="fe fe-maximize"></i></a>
+                                        <a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                        <div class="item-action dropdown ml-2">
+                                            <a href="javascript:void(0)" data-toggle="dropdown"><i class="fe fe-more-vertical"></i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-eye"></i> View Details </a>
+                                                <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-share-alt"></i> Share </a>
+                                                <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-cloud-download"></i> Download</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-copy"></i> Copy to</a>
+                                                <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-folder"></i> Move to</a>
+                                                <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-edit"></i> Rename</a>
+                                                <a href="javascript:void(0)" class="dropdown-item"><i class="dropdown-icon fa fa-trash"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row clearfix">
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label class="form-label">Company</label>
+                                                <input type="text" class="form-control" disabled="" placeholder="Company" value="Epic Theme">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="form-group">
+                                                <label class="form-label">Username</label>
+                                                <input type="text" class="form-control" placeholder="Username" value="michael23">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Email address</label>
+                                                <input type="email" class="form-control" placeholder="Email">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">First Name</label>
+                                                <input type="text" class="form-control" placeholder="Company" value="Jane">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Last Name</label>
+                                                <input type="text" class="form-control" placeholder="Last Name" value="Pearson">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Address</label>
+                                                <input type="text" class="form-control" placeholder="Home Address" value="455 S. Airport St. Moncks Corner">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">City</label>
+                                                <input type="text" class="form-control" placeholder="City" value="New York">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="form-group">
+                                                <label class="form-label">Postal Code</label>
+                                                <input type="number" class="form-control" placeholder="ZIP Code">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="form-group">
+                                                <label class="form-label">Country</label>
+                                                <select class="form-control custom-select">
+                                                    <option value="">USA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group mb-0">
+                                                <label class="form-label">About Me</label>
+                                                <textarea rows="5" class="form-control" placeholder="Here can be your description">Oh so, your weak rhyme You doubt I'll bother, reading into it I'll probably won't, left to my own devices But that's the difference in our opinions.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-body">
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="admin_assets/bundles/lib.vendor.bundle.js"></script>
+
+<script src="admin_assets/bundles/fullcalendar.bundle.js"></script>
+<script src="admin_assets/bundles/knobjs.bundle.js"></script>
+
+<script src="admin_assets/js/core.js"></script>
+<script src="admin_assets/js/page/calendar.js"></script>
+<script src="admin_assets/js/chart/knobjs.js"></script>

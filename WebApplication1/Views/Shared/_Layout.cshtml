@@ -1,0 +1,461 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FindNFix | @ViewData["Title"]</title>
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="~/admin_assets/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <link href="~/admin_assets/fontawesome-free/css/all.css" rel="stylesheet" />
+    <link href="~/css/home.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css" rel="stylesheet">
+    @* <link href="~/admin_assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" /> *@
+</head>
+<body ng-app="Homeapp" ng-controller="HomeController">
+    <header>
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center mx-lg-3">
+                    <div id="m-menu">
+                        <a class="text-light" href="#"
+ data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <i class="fa fa-bars "></i>
+                        </a>
+                    </div>
+                    <a class="navbar-brand text-light" href="#">Navbar scroll</a>
+                </div>
+                <div class="collapse navbar-collapse " id="sd">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0" >
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="/login/becomeseller">Become a service provider</a>
+                        </li>
+                    </ul>
+                </div>
+                @if (TempData["Login"] != null )
+                {
+                    <div>
+                        <a class="text-light" href="#offcanvasExample" data-bs-toggle="offcanvas" role="button"
+                        aria-controls="offcanvasExample" id="MAccounts" aria-hidden="true">
+                            <i class="fa fa-user "
+                            aria-hidden="true"></i>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <a class="text-light text-decoration-none" href="/login/register">Sign up </a>
+                        <span class="text-light">|</span>
+                        <a class="text-light text-decoration-none" href="/login">Login </a>
+                    </div>
+                }
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="#">Become a service provider</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class=" body-content">
+        @RenderBody()
+    </div>
+
+    <footer >
+        <!--mobile nav -->
+        @if (TempData["Login"] != null)
+        {
+            <nav class="bottom-navbar">
+                <a href="/home/index/" id="MHome" class="fa fa-home" aria-hidden="true">
+                    <p>Home</p>
+                </a>
+                <a id="MCategories" href="#" data-bs-toggle="modal" data-bs-target="#trackBooking"
+                   class="fa fa-newspaper" aria-hidden="true">
+                    <p>Track Booking</p>
+                </a>
+                <a href="#"
+                   id="MAccounts" class="fa fa-address-card">
+                    <p>Accounts</p>
+                </a>
+                <a href="/Login/Logout" id="MAccounts" class="fa fa-sign-out" aria-hidden="true">
+                    <p>Log out </p>
+                </a>
+            </nav>
+        }
+
+    
+        <!-- Modal -->
+        <div class="modal fade " id="trackBooking" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl  modal-dialog-scrollable modal-fullscreen-md-down">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Track Booking</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover table-striped table-vcenter mb-0 text-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="20px" align="center">S.no</th>
+                                                        <th>Name </th>
+                                                        <th>Service</th>
+                                                        <th>Address</th>
+                                                        <th>Date of Booking </th>
+                                                        <th>Request date</th>
+                                                        <th>Status </th>
+                                                        <th>Acton </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="c in GetTrackPostRequests">
+                                                        <td width="20px" align="center">{{index+1}}</td>
+                                                        <td><img src="~/admin_assets/images/{{c.userImg}}" alt="Avatar" class="w30 rounded-circle mr-2"> <span>{{c.name}}</span></td>
+                                                        <td>{{c.serviceName}}</td>
+                                                        <td>{{c.address}}</td>
+                                                        <td>{{c.dateofbooking}}</td>
+                                                        <td>{{c.date}} </td>
+                                                        <td>{{c.status}} </td>
+                                                        <td ng-if="c.status == 'Pending'">
+                                                            <button type="button" class="btn btn-danger" ng-click="Updatebooking(c.bookingID,c.userid,'Reject')">Cancel</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                        @* <button type="button" class="btn btn-primary">Understood</button> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample"
+             aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <!-- <div>
+                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text,
+                    images, lists, etc.
+                </div> -->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between align-items-center" data-bs-toggle="modal" data-bs-target="#trackBooking">
+                        <span>
+                            <i class="fa fa-newspaper px-2" aria-hidden="true"></i> Track Booking
+                        </span>
+                        <span><i class="fa fa-angle-right"></i></span>
+                    </li>
+                  
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                            <i class="fa fa-sliders px-2"></i> Settings
+                        </span>
+                        <span><i class="fa fa-angle-right"></i></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="/Login/Logout" class="text-decoration-none text-dark">
+                            <span><i class="fa fa-sign-out px-2" aria-hidden="true"></i> Log out</span>
+                        </a>
+                    </li>
+                    @*  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>
+                    <img src="/images/icons8-wallet-50.png" height="20px" width="20px" alt="wallet" class="mx-2"
+                    srcset="">My wallet
+                    </span>
+                    <span><i class="fa fa-angle-right"></i></span>
+                    </li> *@
+                    <!-- <li class="list-group-item d-flex justify-content-between align-items-center">And a fifth one
+                        <span><i class="fa fa-angle-right"></i></span>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+      
+    </footer>
+    <style>
+        .w30 {
+            width: 30px;
+            height: 30px;
+            line-height: 30px
+        }
+        .table {
+            color: inherit
+        }
+
+            .table thead th {
+                border-top: 0;
+                border-bottom-width: 1px;
+                padding-top: .5rem;
+                padding-bottom: .5rem
+            }
+
+            .table th {
+                color: #9aa0ac;
+                font-size: .875rem;
+                font-weight: 400;
+                text-transform: uppercase
+            }
+
+            .table td, .table th {
+                border-color: #E8E9E9;
+                font-size: 14px
+            }
+
+            .table.table_custom {
+                border-collapse: separate;
+                border-spacing: 0 5px !important
+            }
+
+                .table.table_custom.spacing5 {
+                    border-spacing: 0 5px !important
+                }
+
+                .table.table_custom.spacing8 {
+                    border-spacing: 0 8px !important
+                }
+
+                .table.table_custom.border-style tr td {
+                    border-top: 1px solid #E6E9ED;
+                    border-bottom: 1px solid #E6E9ED;
+                    border-left: 1px solid #E6E9ED
+                }
+
+                    .table.table_custom.border-style tr td:last-child {
+                        border-right: 1px solid #E6E9ED
+                    }
+
+                .table.table_custom.border-style tr:hover td {
+                    border-top-color: #2185d0;
+                    border-bottom-color: #2185d0
+                }
+
+                    .table.table_custom.border-style tr:hover td:first-child {
+                        border-left-color: #2185d0
+                    }
+
+                    .table.table_custom.border-style tr:hover td:last-child {
+                        border-right-color: #2185d0
+                    }
+
+                .table.table_custom thead tr {
+                    background: transparent
+                }
+
+                    .table.table_custom thead tr th {
+                        color: rgba(41,43,48,0.5)
+                    }
+
+                .table.table_custom tr {
+                    background: #fff
+                }
+
+                    .table.table_custom tr th, .table.table_custom tr td {
+                        border: 0
+                    }
+
+                        .table.table_custom tr th:first-child, .table.table_custom tr td:first-child {
+                            border-radius: .55rem 0 0 .55rem
+                        }
+
+                        .table.table_custom tr th:last-child, .table.table_custom tr td:last-child {
+                            border-radius: 0 .55rem .55rem 0
+                        }
+
+            .table.table-md th, .table.table-md td {
+                padding: .5rem
+            }
+
+            .table.table-vcenter td, .table.table-vcenter th {
+                vertical-align: middle
+            }
+
+            .table.table-center td, .table.table-center th {
+                text-align: center
+            }
+
+            .table.table-striped tbody tr:nth-of-type(odd) {
+                background: transparent
+            }
+
+            .table.table-striped tbody tr:nth-of-type(even) {
+                background-color: rgba(0,0,0,0.04)
+            }
+
+            .table.table-custom {
+                border-collapse: separate !important
+            }
+
+                .table.table-custom.spacing5 {
+                    border-spacing: 0 5px !important
+                }
+
+                .table.table-custom.spacing8 {
+                    border-spacing: 0 8px !important
+                }
+
+                .table.table-custom td, .table.table-custom th {
+                    vertical-align: middle;
+                    border-top: 0
+                }
+
+            .table.table-custom2 {
+                border-collapse: separate !important;
+                border-spacing: 1px 1px !important
+            }
+
+                .table.table-custom2 tr td, .table.table-custom2 tr th {
+                    border: none;
+                    font-size: 15px
+                }
+
+                .table.table-custom2 thead, .table.table-custom2 tbody {
+                    background: #fff
+                }
+
+            .table.text-wrap td, .table.text-wrap th {
+                white-space: nowrap
+            }
+
+            .table.table-hover tbody tr:hover {
+                color: #666A6D
+            }
+
+        .table-calendar {
+            margin: 0 0 .75rem
+        }
+
+            .table-calendar td, .table-calendar th {
+                border: 0;
+                text-align: center;
+                padding: 0 !important;
+                width: 14.2857142857%;
+                line-height: 2.5rem
+            }
+
+            .table-calendar td {
+                border-top: 0
+            }
+
+        .table-calendar-link {
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            display: inline-block;
+            vertical-align: middle;
+            *vertical-align: auto;
+            *zoom: 1;
+            *display: inline;
+            background: #E8E9E9;
+            color: #434A54;
+            font-weight: 600;
+            line-height: 2rem;
+            min-width: calc(2rem + 2px);
+            position: relative
+        }
+
+            .table-calendar-link:before {
+                background: #2185d0;
+                content: '';
+                width: 5px;
+                height: 5px;
+                position: absolute;
+                left: 3px;
+                top: 3px
+            }
+
+            .table-calendar-link:hover {
+                color: #fff;
+                background: #2185d0;
+                text-decoration: none
+            }
+
+        .table-header {
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer
+        }
+
+            .table-header:hover {
+                color: #f4f6f9 !important
+            }
+
+            .table-header:after {
+                content: '\f0dc';
+                font-family: 'FontAwesome';
+                display: inline-block;
+                margin-left: .5rem;
+                font-size: .75rem
+            }
+
+        .table-header-asc {
+            color: #f4f6f9 !important
+        }
+
+            .table-header-asc:after {
+                content: '\f0de'
+            }
+
+        .table-header-desc {
+            color: #f4f6f9 !important
+        }
+
+            .table-header-desc:after {
+                content: '\f0dd'
+            }
+    </style>
+    @* <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+    @* <script src="~/admin_assets/bundles/sweetalert.bundle.js"></script> *@
+    <script src="~/js/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+    <script src="~/ControllerScript/HomeController.js"></script>
+    <script src="~/js/signalrservice.js"></script>
+    <script src="~/js/sessionservice.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

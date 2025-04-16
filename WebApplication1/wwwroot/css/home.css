@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+/* Full-screen background */
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: Fredoka;
+
+}
+
+/* Hero section with background image */
+.hero {
+    background-image: url('/images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.hero::after {
+    content: "";
+    background: rgba(0, 0, 0, .3);
+    height: 80vh;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    right: 0;
+}
+
+/* Navigation bar */
+.navbar {
+    background-color: transparent;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+#m-menu {
+    display: none;
+}
+
+.bottom-navbar{
+    text-align: center;
+    background: rgb(255, 255, 255);
+    position: fixed;
+    bottom:0; left:0; right:0;
+    z-index: 1000;
+    display: none;
+}
+.bottom-navbar a {
+    text-decoration: none;
+    color: navy;
+    font-size: 19px;
+    padding: 6px 21px 0px 21px;
+}
+.bottom-navbar a p{
+    font-size: 11px;
+    color: black;
+    margin-top:5px;
+    font: menu;
+}
+.bottom-navbar a:hover{
+    color: navy;
+}
+
+/* Title and subtitle */
+.hero h1 {
+    font-size: 2.1rem;
+    font-weight: bold;
+    z-index: 2;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    z-index: 2;
+    margin-bottom: 30px;
+}
+
+/* Search bar container */
+.search-container {
+    background-color: white;
+    padding: 8px;
+    border-radius: 4px 4px 4px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: white;
+    box-shadow: none;
+}
+.accordion-flush>.accordion-item>.accordion-header .accordion-button, .accordion-flush>.accordion-item>.accordion-header .accordion-button.collapsed {
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Dropdown and search input styling */
+.search-container select,
+.search-container input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+.search-container select {
+    width: 150px;
+    border-radius: 30px;
+    background-color: #f0f0f0;
+}
+
+.search-container input {
+    flex-grow: 1;
+    border-radius: 30px;
+}
+
+.search-container button , .btn-request{
+    background-color: #5502c3;
+    border: none;
+    padding: 7px 20px;
+    color: white;
+    border-radius: 4px 4px 4px 4px;
+}
+.btn-accept{
+    background-color: #02c30c;
+    border: none;
+    padding: 7px 20px;
+    color: white;
+    border-radius: 4px 4px 4px 4px;
+}
+.btn-cancle{
+    background-color: #c30202;
+    border: none;
+    padding: 7px 20px;
+    color: white;
+    border-radius: 4px 4px 4px 4px;
+}
+
+
+.search-container button i {
+    font-size: 13px;
+    padding: 0px 4px 0px 2px;
+}
+
+/* Tag buttons under the search bar */
+.tag-buttons {
+    margin-top: 20px;
+    z-index: 2;
+}
+
+.tag-buttons button {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 0 5px;
+}
+
+ /* Custom Styling for Tool Cards */
+ .tool-card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-10px);
+}
+
+/* .tool-card img {
+    width: 100%;
+    height: auto;
+} */
+
+.tool-card .card-body {
+    background-color: #fff;
+    text-align: center;
+}
+
+.tool-card .btn {
+    margin-top: 10px;
+}
+
+/* Section title */
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+.section-title-one {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    color: white;
+    text-align: center;
+    z-index: 2;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+    .search-container {
+        width: 80%;
+    }
+}
+
+@media (min-width: 778px) {
+
+    #navbarNav {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+   
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    .bottom-navbar{
+        display: block;
+    }
+    #m-menu {
+        display: block;
+        margin: 10px;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .search-container {
+        /* flex-direction: column; */
+        padding: 0px;
+        width: 90%;
+    }
+    .search-container input {
+        margin-bottom: 0px;
+        width: 100%;
+    }
+    .search-container button {
+        margin: 7px 5px 7px 0px;
+        padding: 10px;
+    }
+    .tag-buttons button {
+        margin: 5px 10px;
+    }
+    .tag-buttons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .tool-card {
+        margin-bottom: 30px;
+    }
+    .section-title {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+    }
+    .section-title-one {
+        font-size: .9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 1.4rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .search-container select,
+    .search-container input {
+        font-size: 0.9rem;
+    }
+
+    .search-container button {
+        margin: 7px 5px 7px 0px;
+        padding: 10px;
+        display: flex;
+    }
+
+    .search-container button span {
+        content-visibility: hidden;
+    }
+
+    .search-container button i {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .navbar-nav a {
+        font-size: 0.9rem;
+    }
+
+    .tag-buttons button {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
+.star-rating {
+	white-space: nowrap;
+}
+.star-rating [type="radio"] {
+	appearance: none;
+}
+.star-rating i {
+	font-size: 1em;
+	transition: 0.3s;
+}
+
+.star-rating label:is(:hover, :has(~ :hover)) i {
+	/* transform: scale(1.35); */
+	color: #fffdba;
+	animation: jump 0.5s calc(0.3s + (var(--i) - 1) * 0.15s) alternate infinite;
+}
+.star-rating label:has(~ :checked) i {
+	color: #faec1b;
+	text-shadow: 0 0 2px #ffffff, 0 0 10px #ffee58;
+}
+
+
