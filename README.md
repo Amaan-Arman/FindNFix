@@ -22,7 +22,7 @@
 | Layer         | Technology                     |
 |---------------|--------------------------------|
 | Frontend      | HTML, CSS, JavaScript, Bootstrap |
-| Backend       | ASP.NET MVC (C#)               |
+| Backend       | ASP.NET Core MVC (C#)               |
 | Database      | Microsoft SQL Server           |
 | Real-time     | SignalR for Live Notifications |
 | Maps/Location | Google Maps API                |
@@ -53,7 +53,7 @@
  4. **Configure Database**
     Create a SQL Server database named FindNFixDB.
     Restore database Backup
-    Update your SQL Server connection string in Web.config
+    Update your SQL Server connection string 
 
  6. **Run the Project**  
    Press F5 or click "Start"
