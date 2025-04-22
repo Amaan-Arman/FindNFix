@@ -30,6 +30,15 @@
 
 ---
 
+## 📷 Screenshots
+
+![Screenshot_22-4-2025_145823_localhost](https://github.com/user-attachments/assets/79d273c4-8adf-4bf3-9f47-1ec56d2c3172)
+![Screenshot_22-4-2025_14593_localhost](https://github.com/user-attachments/assets/f8c0866b-355a-4564-895a-cf21bbfef13d)
+![findnfix](https://github.com/user-attachments/assets/1f846b60-7e01-4272-bc6c-b22a5d7160a6)
+
+
+---
+
 ## ⚙️ Setup Instructions
 
 1. **Clone the repository**
